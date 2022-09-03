@@ -29,22 +29,21 @@ module.exports = {
   },
   updateDate: async (req, res) => {
     try {
-      //Daren's part
-      // await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-      //     completed: true
-      // })
-      // console.log('Marked Complete')
-      // res.json('Marked Complete')
+      await Date.findOneAndUpdate({date:req.body.date},{
+      [req.body.mealType]: req.body.foodItems,
+      })
+      console.log('Meal Updated')
+      res.json('Meal Updated')
     } catch (err) {
       console.log(err);
     }
   },
   deleteDate: async (req, res) => {
-    console.log(req.body.todoIdFromJSFile);
+    console.log(req.body.dateId);
     try {
-      // await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
-      // console.log('Deleted Todo')
-      // res.json('Deleted It')
+      await Date.findOneAndDelete({_id:req.body.dateId})
+      console.log('Deleted Item')
+      res.json('Deleted Item')
     } catch (err) {
       console.log(err);
     }
