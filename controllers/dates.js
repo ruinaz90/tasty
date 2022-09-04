@@ -22,18 +22,21 @@ module.exports = {
         date: date,
       });
       console.log(newDate);
-      res.redirect('/dates');
+      res.json('Date Created');
     } catch (err) {
       console.log(err);
     }
   },
   updateDate: async (req, res) => {
     try {
-      await Date.findOneAndUpdate({date:req.body.date},{
-      [req.body.mealType]: req.body.foodItems,
-      })
-      console.log('Meal Updated')
-      res.json('Meal Updated')
+      await Date.findOneAndUpdate(
+        { date: req.body.date },
+        {
+          [req.body.mealType]: req.body.foodItems,
+        }
+      );
+      console.log('Meal Updated');
+      res.json('Meal Updated');
     } catch (err) {
       console.log(err);
     }
@@ -41,9 +44,9 @@ module.exports = {
   deleteDate: async (req, res) => {
     console.log(req.body.dateId);
     try {
-      await Date.findOneAndDelete({_id:req.body.dateId})
-      console.log('Deleted Item')
-      res.json('Deleted Item')
+      await Date.findOneAndDelete({ _id: req.body.dateId });
+      console.log('Deleted Item');
+      res.json('Deleted Item');
     } catch (err) {
       console.log(err);
     }
