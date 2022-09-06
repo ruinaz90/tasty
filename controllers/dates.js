@@ -4,7 +4,7 @@ module.exports = {
   getDates: async (req, res) => {
     console.log(req.user);
     try {
-      const dates = await Date.find({ userId: req.user.id });
+      const dates = await Date.find({ userId: req.user.id }).sort({date: -1});
       res.render('dates.ejs', { user: req.user, dates: dates });
     } catch (err) {
       console.log(err);
@@ -23,6 +23,7 @@ module.exports = {
       });
       console.log(newDate);
       res.json('Date Created');
+      res.redirect('/dates')
     } catch (err) {
       console.log(err);
     }
@@ -37,6 +38,7 @@ module.exports = {
       );
       console.log('Meal Updated');
       res.json('Meal Updated');
+      res.redirect('/dates')
     } catch (err) {
       console.log(err);
     }
