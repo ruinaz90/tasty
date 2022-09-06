@@ -26,9 +26,9 @@ async function sendData() {
       method: httpRequest,
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        date: date,
-        mealType: mealType,
-        foodItems: foodItems,
+        'date': date,
+        'mealType': mealType,
+        'foodItems': foodItems
       }),
     });
     const data = await response.json();
@@ -50,13 +50,14 @@ Array.from(deleteBtn).forEach((el) => {
 });
 
 async function deleteDate() {
-  const dateId = this.parentNode.dataset.id;
+  const dateId = this.parentNode.parentNode.dataset.id;
+  console.log(dateId)
   try {
-    const response = await fetch('/date', {
+    const response = await fetch('/dates', {
       method: 'delete',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        dateId: dateId,
+        'dateId': dateId,
       }),
     });
     const data = await response.json();

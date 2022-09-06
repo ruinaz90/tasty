@@ -1,56 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <h1>App Name</h1>
-    <form>
-      <input id="date" type="date" />
-      <select id="mealType">
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
-        <option value="snack">Snack</option>
-      </select>
-      <input id="foodItems" type="text" />
-      <input id="create" type="submit" />
-    </form>
+<%- include("partials/header.ejs") %>
 
-      <!-- Dates will render here - each date needs a data-id attribute for delete to work -->
-      <section>
-        <% for(let date of dates) { %> <!-- loop through dates -->
-          <div class="entry" data-date="<%=date.date%>" data-date="<%=date._id%>"> <!-- one entry for each date -->
-            <h2><%= date.date %></h2>
+<h1>App Name</h1>
+<form>
+  <input id="date" type="date" />
+  <select id="mealType">
+    <option value="breakfast">Breakfast</option>
+    <option value="lunch">Lunch</option>
+    <option value="dinner">Dinner</option>
+  </select>
+  <input id="foodItems" type="text" />
+  <input id="create" type="submit" />
+</form>
 
-            <div class="entry-container"> <!-- flexbox container -->
-              <!-- meal items -->
-              <div class="meal">
-                <h3>Breakfast</h3>
-                <p class="meal-item">
-                  <%= date.breakfast ? date.breakfast : "Looks like you didn't have breakfast on this day" %>
-                </p>
-              </div>
+<!-- Dates will render here - each date needs a data-id attribute for delete to work -->
+<section>
+  <% for(let date of dates) { %> <!-- loop through dates -->
+    <div class="entry" data-date="<%=date.date%>" data-id="<%=date._id%>"> <!-- one entry for each date -->
+      <h2><%= date.date %></h2>
 
-              <div class="meal">
-                <h3>Lunch</h3>
-                <p class="meal-item">
-                  <%= date.lunch ? date.lunch : "Looks like you didn't have lunch on this day" %> 
-                </p>
-              </div>
+      <div class="entry-container"> <!-- flexbox container -->
+        <!-- meal items -->
+        <div class="meal">
+          <h3>Breakfast</h3>
+          <p class="meal-item">
+            <%= date.breakfast ? date.breakfast : "Looks like you didn't have breakfast on this day" %>
+          </p>
+        </div>
 
-            <div class="meal">
-              <h3>Dinner</h3>
-              <p class="meal-item">
-                <%= date.dinner ? date.dinner : "Looks like you didn't have dinner on this day" %> 
-              </p>
-            </div>
-            
-          </div>
+        <div class="meal">
+          <h3>Lunch</h3>
+          <p class="meal-item">
+            <%= date.lunch ? date.lunch : "Looks like you didn't have lunch on this day" %>
+          </p>
         </div>
         <% } %>
     </section>
@@ -58,6 +39,19 @@
     <a href="/logout">Logout</a>
     </section>
 
-    <script src="js/main.js"></script>
-  </body>
-</html>
+
+      <div class="meal">
+        <h3>Dinner</h3>
+        <p class="meal-item">
+          <%= date.dinner ? date.dinner : "Looks like you didn't have dinner on this day" %>
+        </p>
+      </div>
+      <button class="del">Delete</button>
+    </div>
+  </div>
+  <% } %>
+</section>
+
+<a href="/logout">Logout</a>
+
+<%- include("partials/footer.ejs") %>
