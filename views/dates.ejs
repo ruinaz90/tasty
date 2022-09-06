@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 
-<h1>App Name</h1>
-<form>
+<h1>Tasty</h1>
+<form id="mealSubmit">
   <input id="date" type="date" />
   <select id="mealType">
     <option value="breakfast">Breakfast</option>
@@ -11,6 +11,7 @@
   <input id="foodItems" type="text" />
   <input id="create" type="submit" />
 </form>
+
 
 <!-- Dates will render here - each date needs a data-id attribute for delete to work -->
 <section>
