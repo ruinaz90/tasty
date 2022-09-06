@@ -19,7 +19,7 @@
   <!-- loop through dates -->
   <div class="entry" data-date="<%=date.date%>" data-id="<%=date._id%>">
     <!-- one entry for each date -->
-    <h2><%= date.date %></h2>
+    <h2><%= new Date(date.date.split('-').join(',')).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) %></h2>
 
     <div class="entry-container">
       <!-- flexbox container -->
